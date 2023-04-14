@@ -34,7 +34,7 @@ This project includes the following files:
 ### To use this project, follow these steps:
 <ol>
   <li>Clone the repository: git clone https://github.com/shishir-dwi/Email-Spam-Classification-</li>
-  <li>Email Spam Classification using NLP.ipynb in Jupyter Notebook or any other compatible software.</li>
+  <li>Open Email Spam Classification using NLP.ipynb in Jupyter Notebook or any other compatible software.</li>
   <li>Follow the instructions in the Notebook to run the code and train the model.</li>
   <li>Evaluate the performance of the model using the metrics generated in the Notebook.</li>
 </ol>
