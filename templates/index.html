@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spam-Email-Classfication</title>
+    <!-- <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"> -->
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f2f2f2;
+      }
+
+      h1 {
+        font-family: Arial, sans-serif;
+        font-size: 36px;
+        color: #333;
+        background-color: #eee;
+        padding: 10px;
+        margin: 20px 0;
+        text-shadow: 2px 2px 0 #333;
+        background: linear-gradient(to right, #ff7f50, #ff5f6d);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-align: center;
+        font-size: 60px;
+        font-family: "Montserrat", sans-serif;
+        letter-spacing: 2px;
+        text-shadow: 2px 2px #444444;
+      }
+
+      /* .background-text {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 100px;
+        opacity: 0.8;
+        position: fixed;
+        top: 70%;
+        left: 35%;
+        transform: translate(-26%, -110%);
+      } */
+
+      form {
+        width: 410px;
+        margin: auto;
+        background-color: #040303;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      }
+      #text_input {
+        width: 400px;
+        height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        padding: 10px;
+        box-sizing: border-box;
+      }
+
+      label {
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      .form-control {
+        position: relative;
+        margin: 20px 0 40px;
+        width: 190px;
+      }
+
+      .form-control textarea {
+        background-color: transparent;
+        border: 0;
+        border-bottom: 2px #fff solid;
+        display: block;
+        width: 100%;
+        padding: 15px 0;
+        font-size: 18px;
+        color: #fff;
+      }
+
+      .form-control textarea:focus,
+      .form-control textarea:valid {
+        outline: 0;
+        border-bottom-color: lightblue;
+      }
+
+      .form-control label {
+        position: absolute;
+        top: 15px;
+        left: 0;
+        pointer-events: none;
+      }
+
+      .form-control label span {
+        display: inline-block;
+        font-size: 18px;
+        min-width: 5px;
+        color: #fff;
+        transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      }
+
+      .form-control textarea:focus + label span,
+      .form-control textarea:valid + label span {
+        color: lightblue;
+        transform: translateY(-30px);
+      }
+
+      .cta {
+        position: relative;
+        margin: auto;
+        padding: 12px 18px;
+        transition: all 0.2s ease;
+        border: none;
+        background: none;
+      }
+
+      .cta:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        border-radius: 50px;
+        background: #b1dae7;
+        width: 45px;
+        height: 45px;
+        transition: all 0.3s ease;
+      }
+
+      .cta span {
+        position: relative;
+        font-family: "Ubuntu", sans-serif;
+        font-size: 18px;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        color: #234567;
+      }
+
+      .cta svg {
+        position: relative;
+        top: 0;
+        margin-left: 10px;
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke: #234567;
+        stroke-width: 2;
+        transform: translateX(-5px);
+        transition: all 0.3s ease;
+      }
+
+      .cta:hover:before {
+        width: 100%;
+        background: #b1dae7;
+      }
+
+      .cta:hover svg {
+        transform: translateX(0);
+      }
+
+      .cta:active {
+        transform: scale(0.95);
+      }
+
+      #output {
+        width: 80%;
+        margin: 30px auto;
+        padding: 20px;
+        background-color: #f2f2f2;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        font-size: 20px;
+        line-height: 1.5;
+      }
+
+      #output h2 {
+        margin-top: 0;
+        font-size: 30px;
+        font-weight: bold;
+        color: #333333;
+      }
+
+      #output p {
+        margin-top: 10px;
+        font-size: 24px;
+        color: #666666;
+      }
+
+    </style>
+</head>
+<body>
+
+    <!-- <div class="background-text">
+      <p></p>
+    </div> -->
+
+    <h1>Spam Email Predictor</h1>
+
+    <form action="/predict" method="POST">
+        <div class="form-control">
+            <textarea name="text_input" id="text_input" cols="50" rows="20" required></textarea>
+            <label for="text_input">
+                <span style="transition-delay:0ms">E</span><span style="transition-delay:50ms">m</span><span style="transition-delay:100ms">a</span><span style="transition-delay:150ms">i</span><span style="transition-delay:200ms">l</span><span style="transition-delay:250ms">T</span><span style="transition-delay:300ms">e</span><span style="transition-delay:350ms">x</span><span style="transition-delay:400ms">t</span>
+            </label>
+        </div>
+      <!-- <label for="text_input">Enter text:</label>
+      <input type="text" id="text_input" name="text_input"><br><br> -->
+
+      <label for="cta" class="cta">
+        <span>Predict</span>
+        <svg viewBox="0 0 13 10" height="10px" width="15px">
+          <path d="M1,5 L11,5"></path>
+          <polyline points="8 1 12 5 8 9"></polyline>
+        </svg>
+      </label>
+      <input type="submit" id="cta" style="display:none;">
+      
+      <!-- <input type="submit" value="Submit"> -->
+    </form>
+    <div id="output">
+      <h2>Result:</h2>
+    <p id="output-text"></p>
+    </div>
+    <script>
+      const form = document.querySelector('form');
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const textInput = document.querySelector('#text_input').value;
+        const response = await fetch('/predict', {
+          method: 'POST',
+          body: JSON.stringify({text_input: textInput}),
+          headers: {'Content-Type': 'application/json'}
+        });
+        const result = await response.json();
+        document.querySelector('#output-text').textContent = result.output;
+      });
+    </script>
+</body>
+</html>
